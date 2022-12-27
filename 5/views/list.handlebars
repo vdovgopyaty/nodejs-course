@@ -1,0 +1,18 @@
+<ul>
+{{#each users}}
+	<li>
+		<form action="/update" method="POST">
+			<input type="hidden" name="id" value="{{this.id}}">
+			<input type="text" name="name" value="{{this.name}}">
+			<select name="role">
+				<option>executor</option>
+				<option>customer</option>
+			</select>
+			<input type="submit"/>
+			<a href="/delete/{{this.id}}">Удалить</a>
+		</form>
+	</li>
+{{/each}}
+</ul>
+
+{{> addTask}}

@@ -1,0 +1,32 @@
+include ../includes/mixins
+
+doctype
+html
+	head
+		meta(name='description' content='34')
+		meta(name='keywords' content='')
+		meta(charset='utf-8')
+		meta(http-equiv='X-UA-Compatible' content='IE=edge')
+		meta(name='viewport' content='width=device-width, initial-scale=1')
+		meta(name='author' content='Vladislav Dovg')
+		title= page
+		link(rel='shortcut icon' href='favicon.ico')
+		link(rel='apple-touch-icon' href='apple-icon.png')
+		link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.2/css/materialize.min.css')
+		link(rel='stylesheet' href='styles/common.css')
+	body
+		header#header
+			block header
+				nav.blue-grey
+					a.brand-logo(href='/') Logo
+					ul#nav-mobile.right.hide-on-med-and-down
+						each link in links
+							li: a(href=link)= link
+						li: a(href='/new') new
+		main#content
+			block content
+		footer#footer
+			block footer
+		script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js')
+		script(src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.2/js/materialize.min.js')
+		script(src='scripts/script.js')

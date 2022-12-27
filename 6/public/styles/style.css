@@ -1,0 +1,15 @@
+.calendar {
+	border-collapse: collapse;
+}
+.calendar tr {
+}
+.calendar td {
+	padding: 20px;
+	border: 1px solid #ccc;
+}
+.calendar td:first-of-type {
+	border-left-color: #000;
+}
+.calendar td:nth-of-type(7n) {
+	border-right-color: #000;
+}

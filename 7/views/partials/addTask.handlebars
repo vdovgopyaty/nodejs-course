@@ -1,0 +1,38 @@
+<style>
+	#addTask {
+		margin-top: 10px;
+	}
+	#addTaskBtn.hide {
+		display: none;
+	}
+	#addTaskBtnForm {
+		display: none;
+	}
+	#addTaskBtnForm.show {
+		display: block;
+	}
+</style>
+<div id="addTask">
+	<button id="addTaskBtn" type="button" class="btn btn-primary">Создать новую задачу</button>
+	<form id="addTaskBtnForm" action="/add" method="post">
+		<fieldset class="form-group">
+			<label for="inputTitle">Название задачи</label>
+			<input name="title" type="text" class="form-control" id="inputTitle" placeholder="Название задачи">
+		</fieldset>
+		<fieldset class="form-group">
+			<label for="inputDescription">Описание задачи</label>
+			<textarea class="form-control" id="inputDescription" rows="3" placeholder="Описание задачи"></textarea>
+		</fieldset>
+		<fieldset class="form-group">
+			<button type="submit" class="btn btn-primary">Создать задачу</button>
+		</fieldset>
+	</form>
+</div>
+<script>
+	var addTaskBtn = document.getElementById('addTaskBtn');
+	var addTaskBtnForm = document.getElementById('addTaskBtnForm');
+	addTaskBtn.onclick = function() {
+		this.classList.add('hide');
+		addTaskBtnForm.classList.add('show');
+	};
+</script>

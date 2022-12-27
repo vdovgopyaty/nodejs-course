@@ -1,0 +1,17 @@
+extends layouts/main
+
+block content
+	.container
+		form(method='post' action='/new')
+			fieldset
+				legend= page
+				.input-field
+					input#url.validate(type='text' name='pageurl')
+					label(for='url') Page URL
+				.input-field
+					input#name.validate(type='text' name='pagename')
+					label(for='name') Page Name
+				.input-field
+					textarea#content.materialize-textarea(name='pagecontent' length='120')
+					label(for='content') Page Content
+				button.btn.waves-effect.waves-light(type='submit') Add

@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+	<title>TODO list</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/css/bootstrap.min.css">
+	<link rel="stylesheet" href="styles/style.css">
+	<style>
+		main { padding: 50px 0; }
+		nav .nav-user {
+			margin: 0;
+			display: block;
+			padding-top: .425rem;
+			padding-bottom: .425rem;
+			color: rgba(0,0,0,.3);
+		}
+		nav .nav-user a {
+			color: rgba(0,0,0,.6);
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-light bg-faded">
+			<div class="container">
+				<a class="navbar-brand" href="/">Logo</a>
+				{{> nav}}
+				<ul class="nav navbar-nav pull-right">
+					{{#if user}}
+						<li class="nav-item">
+							<p class="nav-user">Вы вошли как <a href="/user">{{user}}</a>.</p>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/signout">Выйти</a>
+						</li>
+					{{else}}
+						<li class="nav-item">
+							<a class="nav-link" href="/signin">Войти</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/signup">Зарегистрироваться</a>
+						</li>
+					{{/if}}
+				</ul>
+			</div>
+		</nav>
+	</header>
+	<main>
+		<div class="container">
+			{{{body}}}
+		</div>
+	</main>
+	<footer>
+	</footer>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="scripts/script.js"></script>
+</body>
+</html>

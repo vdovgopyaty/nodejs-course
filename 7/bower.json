@@ -1,0 +1,20 @@
+{
+  "name": "06",
+  "description": "",
+  "main": "app.js",
+  "authors": [
+    "Vladislav Dovgopjatiy"
+  ],
+  "license": "ISC",
+  "moduleType": [
+    "node"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

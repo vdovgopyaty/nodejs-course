@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body id="body">
+	<script>
+		var body = document.getElementById('body');
+
+		// текущее дата/время
+		var currentDateTime = new Date();
+		// время начала текущего года, в миллисекундах
+		var startTimeOfCurrentYear = (new Date(currentDateTime.getFullYear(), 0, 1)).getTime();
+		// текущее время в миллисекундах
+		var currentTime = currentDateTime.getTime();
+		// прошедшее время с начала года, в миллисекундах
+		var pastTimeOfStartCurrentYear = currentTime - startTimeOfCurrentYear;
+		// количество миллисекунд в неделе
+		var MsInWeek = 604800000;
+		console.log("С начала года:");
+		console.log("Идет " + (pastTimeOfStartCurrentYear / MsInWeek).toFixed() + " неделя года");
+		console.log("Идет " + (pastTimeOfStartCurrentYear / MsInWeek / 4).toFixed() + " месяц года");
+
+		var input = '2015-48';
+		var arr = input.split('-');
+		console.log(arr);
+		var msWeek = input * MsInWeek;
+
+		var msUTC = Date.parse(arr[0] + '-' + arr[1] + '-26T13:51:50.417Z'); // зона UTC
+		// 1327571510417 (число миллисекунд)
+		console.log(msUTC);
+		var now = new Date();
+		var inner = now;
+
+		console.log(inner + ' ' + msWeek);
+	</script>
+</body>
+</html>

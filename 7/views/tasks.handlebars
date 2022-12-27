@@ -1,0 +1,218 @@
+<style>
+	.tasks-item, .actions-item {
+		position: relative;
+		color: #0074d9;
+		font-weight: bold;
+		font-size: 14px;
+	}
+	.tasks-item .c-input {
+		font-size: 20px;
+		color: #000;
+	}
+	.actions-item .c-input {
+		font-weight: normal;
+		font-size: 16px;
+	}
+	.tasks-item {
+		padding-bottom: 20px;
+	}
+	.tasks-c-input {
+		position: relative;
+		vertical-align: middle;
+	}
+	.tasks-c-input .c-indicator {
+		margin-top: 2px;
+	}
+	.actions-item {
+		margin-top: 5px;
+	}
+	.description {
+		margin: 5px 0 10px;
+		padding-left: 25px;
+		color: #000;
+		font-size: 90%;
+		font-weight: normal;
+	}
+	.tasks-item-show {
+		position: relative;
+	}
+	.tasks-item-show.hide {
+		display: none;
+	}
+	.tasks-item-show .edit-task-btn {
+		position: absolute;
+		top: 5px;
+		left: -60px;
+		padding: 0 3px;
+		font-size: 14px;
+		font-weight: normal;
+		line-height: 1rem;
+	}
+	.tasks-item-edit {
+		display: none;
+		position: relative;
+	}
+	.tasks-item-edit.show {
+		display: block;
+	}
+	.tasks-item-edit .input-title {
+		position: absolute;
+		top: -8px;
+		left: 20px;
+		font-size: 20px;
+		color: #000;
+	}
+	.tasks-item-edit .input-description {
+		font-size: 12px;
+		font-weight: normal;
+		color: #000;
+	}
+	.actions-item .input-action {
+		position: absolute;
+		top: -1px;
+		left: 20px;
+		padding: 0 .75rem;
+		font-weight: normal;
+		font-size: 16px;
+	}
+</style>
+<ol class="tasks">
+	{{#each tasks}}
+	<li class="tasks-item">
+		<div class="tasks-item-show">
+			<button type="button" class="btn btn-secondary-outline edit-task-btn" onclick="editTask(this)">edit</button>
+			<label class="c-input tasks-c-input c-checkbox">
+				<input type="checkbox" {{#if this.completed}}checked="checked"{{/if}}>
+				<span class="c-indicator"></span>
+				{{this.title}}
+			</label>
+			<p class="description">{{this.description}}</p>
+			<ol class="actions">
+				{{#each this.actions}}
+				<li class="actions-item">
+					<label class="c-input actions-c-input c-checkbox">
+						<input type="checkbox" {{#if this.done}}checked="checked"{{/if}}>
+						<span class="c-indicator"></span>
+						{{this.action}}
+					</label>
+				</li>
+				{{/each}}
+			</ol>
+		</div>
+		<div class="tasks-item-edit">
+			<form action="/tasks" method="update">
+				<fieldset class="form-group">
+					<label class="c-input tasks-c-input input-completed c-checkbox">
+						<input type="checkbox" {{#if this.completed}}checked="checked"{{/if}}>
+						<span class="c-indicator"></span>
+					</label>
+					<input type="text" class="form-control input-title" value="{{this.title}}">
+				</fieldset>
+				<fieldset class="form-group">
+					<textarea class="form-control input-description" rows="3">{{this.description}}</textarea>
+				</fieldset>
+				<fieldset class="form-group">
+					<ol class="actions">
+						{{#each this.actions}}
+						<li class="actions-item">
+							<label class="c-input actions-c-input c-checkbox">
+								<input type="checkbox" {{#if this.done}}checked="checked"{{/if}}>
+								<span class="c-indicator"></span>
+							</label>
+							<input type="text" class="form-control input-action" value="{{this.action}}">
+						</li>
+						{{/each}}
+					</ol>
+				</fieldset>
+				<fieldset class="form-group">
+					<button type="submit" class="btn btn-primary">Сохранить</button>
+					<button id="tasks-item-edit-cancel" type="button" class="btn btn-secondary-outline" onclick="editTaskCancel(this)">Отмена</button>
+				</fieldset>
+			</form>
+		</div>
+	</li>
+	{{/each}}
+</ol>
+
+{{!-- <table class="table table-bordered">
+	<thead class="thead-inverse">
+		<tr>
+			<th></th>
+			<th>ПН</th>
+			<th>ВТ</th>
+			<th>СР</th>
+			<th>ЧТ</th>
+			<th>ПТ</th>
+			<th>СБ</th>
+			<th>ВС</th>
+		</tr>
+	</thead>
+	<tbody>
+		{{#each tasks}}
+		<tr>
+			<td>{{this.title}}</td>
+			<td></td>
+			{{#each this.actions}}
+				<td>{{this.done}}</td>
+			{{/each}}
+		</tr>
+		{{/each}}
+	</tbody>
+</table> --}}
+
+
+{{!-- <ul class="collapsible" data-collapsible="accordion">
+{{#each tasks}}
+	<li>
+		<div class="collapsible-header {{#if this.iscomplete}}complete{{/if}}">
+			<input name="iscomplete" id="iscomplete" type="checkbox" {{#if this.iscomplete}}checked="checked"{{/if}} disabled="disabled">
+			<label for="iscomplete">{{this.title}}</label>
+		</div>
+		<div class="collapsible-body">
+			<div class="row">
+				<form class="col s12" action="/update" method="POST">
+					<input type="hidden" name="id" value="{{this.id}}">
+					<div class="row">
+						<div class="input-field col s12">
+							<div class="col s2">
+								<p>
+									<input name="iscomplete" id="iscomplete" type="checkbox" {{#if this.iscomplete}}checked="checked"{{/if}}>
+									<label for="iscomplete">Выполнено</label>
+								</p>
+							</div>
+							<input class="col s10" type="text" name="title" value="{{this.title}}">
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<textarea name="description" id="description" class="materialize-textarea"></textarea>
+							<label for="description">Описание</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col s12">
+							<button class="btn waves-effect waves-light" type="submit">Сохранить</button>
+							<a class="btn-flat" href="/delete/{{this.id}}">Удалить</a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</li>
+{{/each}}
+</ul> --}}
+
+{{> addTask}}
+<script>
+	var tasksItemEditCancel = document.getElementById('tasks-item-edit-cancel');
+	var editTask = function(btn) {
+		var parent = btn.parentNode;
+		parent.classList.add('hide');
+		parent.parentNode.querySelector('.tasks-item-edit').classList.add('show');
+	};
+	var editTaskCancel = function(btn) {
+		var parent = btn.parentNode.parentNode;
+		parent.classList.remove('hide');
+		parent.parentNode.querySelector('.tasks-item-show').classList.remove('show');
+	};
+</script>

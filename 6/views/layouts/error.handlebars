@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+	<title>TODO list</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/css/bootstrap.min.css">
+	<link rel="stylesheet" href="styles/style.css">
+	<style>
+		main { padding: 50px 0; }
+		nav .nav-user {
+			margin: 0;
+			display: block;
+			padding-top: .425rem;
+			padding-bottom: .425rem;
+			color: rgba(0,0,0,.3);
+		}
+		nav .nav-user a {
+			color: rgba(0,0,0,.6);
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-light bg-faded">
+			<div class="container">
+				<a class="navbar-brand" href="/">Logo</a>
+				{{> nav}}
+			</div>
+		</nav>
+	</header>
+	<main>
+		<div class="container">
+			{{{body}}}
+		</div>
+	</main>
+	<footer>
+	</footer>
+</body>
+</html>

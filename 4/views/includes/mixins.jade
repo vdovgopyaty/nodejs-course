@@ -1,0 +1,61 @@
+mixin menu(currentUrl)
+    ul
+        li(class={active: currentUrl === '/index'})
+            a(href='/') Главная
+        li(class={active: currentUrl === '/list'})
+            a(href='#') Сайты скалодромов
+        li(class={active: currentUrl === '/calendar'})
+            a(href='#') Календарь соревнований
+        li(class={active: currentUrl === '/faq'})
+            a(href='#') Все что нужно знать
+        li(class={active: currentUrl === '/contacts'})
+            a(href='#') Контакты
+
+mixin form-horizontal(id, name, phone, email, submit)
+    if name
+        .form-group
+            label.col-xs-2.control-label(for='inputName'+id) Имя
+            .col-xs-10
+                input.form-control(id='inputName'+id type='text' name='name' placeholder='Имя' required='required')
+    if phone
+        .form-group
+            label.col-xs-2.control-label(for='inputPhone'+id) Телефон
+            .col-xs-10
+                input.form-control(id='inputPhone'+id type='text' name='phone' placeholder='Телефон' required='required')
+    if email
+        .form-group
+            label.col-xs-2.control-label(for='inputEmail'+id) Email
+            .col-xs-10
+                input.form-control(id='inputEmail'+id type='text' name='email' placeholder='Email' required='required')
+        .form-group
+            .col-xs-offset-2.col-xs-10
+                if submit
+                    button.btn.btn-primary(type='submit') #{submit}
+                else
+                    button.btn.btn-primary(type='submit') Отправить
+
+
+mixin form(id, name, phone, email, submit)
+    if name
+        .form-group.text-left
+            label.control-label(for='inputName'+id) Имя
+            .input-group
+                .input-group-addon.fa.fa-user
+                input.form-control.inputName(id='inputName'+id type='text' name='name' placeholder='Имя' required='required')
+    if phone
+        .form-group.text-left
+            label.control-label(for='inputPhone'+id) Телефон
+            .input-group
+                .input-group-addon.fa.fa-phone
+                input.form-control.inputPhone(id='inputPhone'+id type='text' name='phone' required='required')
+    if email
+        .form-group.text-left
+            label.control-label(for='inputEmail'+id) Email
+            .input-group
+                .input-group-addon.fa.fa-at
+                input.form-control.inputEmail(id='inputEmail'+id type='text' name='email' required='required')
+    .form-group.text-center
+        if submit
+            button.btn.btn-primary(type='submit') #{submit}
+        else
+            button.btn.btn-primary(type='submit') Отправить
